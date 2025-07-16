@@ -4,6 +4,10 @@ import pandas as pd
 import adopt_net0.data_preprocessing as dp
 from adopt_net0.modelhub import ModelHub
 from adopt_net0.result_management.read_results import add_values_to_summary
+import os
+
+#Define basepath
+basepath = os.path.dirname(os.path.abspath(__file__))
 
 
 #Run Chemelot test design days greenfield
@@ -11,8 +15,8 @@ execute = 0
 
 if execute == 1:
     # Specify the path to your input data
-    casepath = "Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2030"
-    resultpath = "Z:/AdOpt_NET0/AdOpt_results/MY/DesignDays/CH_2030_gf"
+    casepath = os.path.join(basepath, "Case_studies", "MY_Chemelot_gf_2030")
+    resultpath = os.path.join(basepath, "Raw_results", "DesignDays", "CH_2030_gf")
 
     json_filepath = Path(casepath) / "ConfigModel.json"
 
@@ -66,8 +70,8 @@ execute = 1
 
 if execute == 1:
     # Specify the path to your input data
-    casepath = "Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_bf_2030"
-    resultpath = "Z:/AdOpt_NET0/AdOpt_results/MY/DesignDays/CH_2030_bf"
+    casepath = os.path.join(basepath, "Case_studies", "MY_Chemelot_bf_2030")
+    resultpath = os.path.join(basepath, "Raw_results", "DesignDays", "CH_2030_bf")
 
     json_filepath = Path(casepath) / "ConfigModel.json"
 

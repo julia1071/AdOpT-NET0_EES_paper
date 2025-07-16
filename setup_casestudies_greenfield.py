@@ -7,22 +7,19 @@ from adopt_net0.modelhub import ModelHub
 from adopt_net0.result_management.read_results import add_values_to_summary
 import pandas as pd
 
+#Set basepath
+basepath = Path(__file__).resolve().parent
+
 #global functions
 read_all = 0
 
 #Create data Chemelot cluster short term
 execute = 1
-noRR = 0
 
 if execute == 1:
-    if noRR:
-        # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/Tests/MY_noRR/MY_Chemelot_gf_2030")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250314_MY_Data_Chemelot_noRR")
-    else:
-        # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2030")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250303_MY_Data_Chemelot")
+    # Specify the path to your input data
+    casepath = basepath / "Case_studies" / "MY_Chemelot_gf_2030"
+    datapath = basepath / "Input_data" / "250303_MY_Data_Chemelot"
 
     firsttime = 0
     if firsttime:
@@ -210,14 +207,9 @@ if execute == 1:
 execute = 1
 
 if execute == 1:
-    if noRR:
-        # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/Tests/MY_noRR/MY_Chemelot_gf_2040")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250314_MY_Data_Chemelot_noRR")
-    else:
-        # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2040")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250303_MY_Data_Chemelot")
+    # Specify the path to your input data
+    casepath = basepath / "Case_studies" / "MY_Chemelot_gf_2040"
+    datapath = basepath / "Input_data" / "250303_MY_Data_Chemelot"
 
     firsttime = 0
     if firsttime:
@@ -414,14 +406,9 @@ if execute == 1:
 execute = 1
 
 if execute == 1:
-    if noRR:
-        # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/Tests/MY_noRR/MY_Chemelot_gf_2050")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250314_MY_Data_Chemelot_noRR")
-    else:
-        # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2050")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250303_MY_Data_Chemelot")
+    # Specify the path to your input data
+    casepath = basepath / "Case_studies" / "MY_Chemelot_gf_2050"
+    datapath = basepath / "Input_data" / "250303_MY_Data_Chemelot"
 
     firsttime = 0
     if firsttime:

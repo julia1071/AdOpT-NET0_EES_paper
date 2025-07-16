@@ -6,14 +6,18 @@ from adopt_net0.modelhub import ModelHub
 from adopt_net0.result_management.read_results import add_values_to_summary
 from adopt_net0.utilities import fix_installed_capacities, installed_capacities_existing, \
     installed_capacities_existing_from_file
+import os
+
+#Define basepath
+basepath = os.path.dirname(os.path.abspath(__file__))
 
 #Run Chemelot cluster case
 execute = 0
 
 if execute == 1:
     # Specify the path to your input data
-    casepath = "Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_"
-    resultpath = "Z:/AdOpt_NET0/AdOpt_results/MY/EmissionScope Greenfield/"
+    casepath = os.path.join(basepath, "Case_studies", "MY_Chemelot_gf_")
+    resultpath = os.path.join(basepath, "Raw_results", "EmissionScope Greenfield")
     json_filepath = Path(casepath) / "ConfigModel.json"
 
     node = 'Chemelot'
@@ -115,8 +119,8 @@ execute = 0
 
 if execute == 1:
     # Specify the base path to your input data
-    casepath = "Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_bf_"
-    resultpath = "Z:/AdOpt_NET0/AdOpt_results/MY/EmissionScope Brownfield/"
+    casepath = os.path.join(basepath, "Case_studies", "MY_Chemelot_bf_")
+    resultpath = os.path.join(basepath, "Raw_results", "EmissionScope Brownfield")
 
     # select simulation types
     node = 'Chemelot'

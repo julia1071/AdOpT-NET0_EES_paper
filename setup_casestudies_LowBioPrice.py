@@ -7,6 +7,9 @@ from adopt_net0.modelhub import ModelHub
 from adopt_net0.result_management.read_results import add_values_to_summary
 import pandas as pd
 
+#set basepath
+basepath = Path(__file__).resolve().parent
+
 #global functions
 execute_greenfield = 1
 execute_brownfield = 1
@@ -20,7 +23,7 @@ if execute_greenfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2030_OptBIO")
+        casepath = basepath / "Case_studies" / "MY_Chemelot_gf_2030_OptBIO"
 
         # Constant import prices
         dp.fill_carrier_data(casepath, value_or_data=56, columns=['Import price'], carriers=['methane'])
@@ -38,7 +41,7 @@ if execute_greenfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2040_OptBIO")
+        casepath = basepath / "Case_studies" / "MY_Chemelot_bf_2040_OptBIO"
 
         # Constant import prices
         dp.fill_carrier_data(casepath, value_or_data=56, columns=['Import price'], carriers=['methane'])
@@ -56,7 +59,7 @@ if execute_greenfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_2050_OptBIO")
+        casepath = basepath / "Case_studies" / "MY_Chemelot_bf_2050_OptBIO"
 
         # Constant import prices
         dp.fill_carrier_data(casepath, value_or_data=59, columns=['Import price'], carriers=['methane'])
@@ -75,7 +78,7 @@ if execute_brownfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_bf_2030_OptBIO")
+        casepath = basepath / "Case_studies" / "MY_Chemelot_bf_2030_OptBIO"
 
         # Constant import prices
         dp.fill_carrier_data(casepath, value_or_data=56, columns=['Import price'], carriers=['methane'])
@@ -93,7 +96,7 @@ if execute_brownfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_bf_2040_OptBIO")
+        casepath = basepath / "Case_studies" / "MY_Chemelot_bf_2040_OptBIO"
 
         # Constant import prices
         dp.fill_carrier_data(casepath, value_or_data=56, columns=['Import price'], carriers=['methane'])
@@ -111,7 +114,7 @@ if execute_brownfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_bf_2050_OptBIO")
+        casepath = basepath / "Case_studies" / "MY_Chemelot_bf_2050_OptBIO"
 
         # Constant import prices
         dp.fill_carrier_data(casepath, value_or_data=59, columns=['Import price'], carriers=['methane'])

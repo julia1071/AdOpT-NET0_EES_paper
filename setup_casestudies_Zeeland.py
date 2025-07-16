@@ -7,6 +7,8 @@ from adopt_net0.modelhub import ModelHub
 from adopt_net0.result_management.read_results import add_values_to_summary
 import pandas as pd
 
+basepath = Path(__file__).resolve().parent
+
 #global functions
 execute_greenfield = 0
 execute_brownfield = 1
@@ -20,8 +22,9 @@ if execute_greenfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Zeeland_gf_2030")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250318_MY_Data_Zeeland")
+        # Specify the path to your input data
+        casepath = basepath / "Case_studies" / "MY_Zeeland_gf_2030"
+        datapath = basepath / "Input_data" / "250318_MY_Data_Zeeland"
 
         firsttime = 0
         if firsttime:
@@ -201,8 +204,8 @@ if execute_greenfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Zeeland_gf_2040")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250318_MY_Data_Zeeland")
+        casepath = basepath / "Case_studies" / "MY_Zeeland_gf_2040"
+        datapath = basepath / "Input_data" / "250318_MY_Data_Zeeland"
 
         firsttime = 0
         if firsttime:
@@ -387,8 +390,8 @@ if execute_greenfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Zeeland_gf_2050")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250318_MY_Data_Zeeland")
+        casepath = basepath / "Case_studies" / "MY_Zeeland_gf_2050"
+        datapath = basepath / "Input_data" / "250318_MY_Data_Zeeland"
 
         firsttime = 0
         if firsttime:
@@ -576,8 +579,8 @@ if execute_brownfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Zeeland_bf_2030")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250318_MY_Data_Zeeland_bf")
+        casepath = basepath / "Case_studies" / "MY_Zeeland_bf_2030"
+        datapath = basepath / "Input_data" / "250318_MY_Data_Zeeland_bf"
 
         firsttime = 0
         if firsttime:
@@ -759,8 +762,9 @@ if execute_brownfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Zeeland_bf_2040")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250318_MY_Data_Zeeland_bf")
+        # Specify the path to your input data
+        casepath = basepath / "Case_studies" / "MY_Zeeland_bf_2040"
+        datapath = basepath / "Input_data" / "250318_MY_Data_Zeeland_bf"
 
         firsttime = 0
         if firsttime:
@@ -949,8 +953,8 @@ if execute_brownfield:
 
     if execute == 1:
         # Specify the path to your input data
-        casepath = Path("Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Zeeland_bf_2050")
-        datapath = Path("Z:/AdOpt_NET0/AdOpt_data/MY/250318_MY_Data_Zeeland_bf")
+        casepath = basepath / "Case_studies" / "MY_Zeeland_bf_2050"
+        datapath = basepath / "Input_data" / "250318_MY_Data_Zeeland_bf"
 
         firsttime = 0
         if firsttime:

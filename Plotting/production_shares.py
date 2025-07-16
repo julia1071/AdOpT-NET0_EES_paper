@@ -10,8 +10,8 @@ from scipy.interpolate import make_interp_spline
 from adopt_net0 import extract_datasets_from_h5group
 
 # Define the data paths
-# RESULT_FOLDER = "Z:/AdOpt_NET0/AdOpt_results/MY/EmissionScope Brownfield/"
-RESULT_FOLDER = "Z:/AdOpt_NET0/AdOpt_results/MY/EmissionLimit Brownfield/"
+# RESULT_FOLDER = os.path.join(basepath, "Raw_results", "EmissionScope Brownfield")
+RESULT_FOLDER = os.path.join(basepath, "Raw_results", "EmissionLimit Brownfield")
 # DATA_TO_EXCEL_PATH1 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_olefins_scope.xlsx'
 # DATA_TO_EXCEL_PATH2 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_ammonia_scope.xlsx'
 DATA_TO_EXCEL_PATH1 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_olefins.xlsx'

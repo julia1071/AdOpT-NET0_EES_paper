@@ -4,14 +4,18 @@ import pandas as pd
 import adopt_net0.data_preprocessing as dp
 from adopt_net0.modelhub import ModelHub
 from adopt_net0.result_management.read_results import add_values_to_summary
+import os
+
+#Define basepath
+basepath = os.path.dirname(os.path.abspath(__file__))
 
 #Run Chemelot emission limit
 execute = 1
 
 if execute == 1:
     # Specify the path to your input data
-    casepath = "Z:/AdOpt_NET0/AdOpt_casestudies/MY/MY_Chemelot_gf_"
-    resultpath = "Z:/AdOpt_NET0/AdOpt_results/MY/EmissionLimit Greenfield/"
+    casepath = os.path.join(basepath, "Case_studies", "MY_Chemelot_gf_")
+    resultpath = os.path.join(basepath, "Raw_results", "EmissionLimit Greenfield")
 
     # select simulation types
     node = 'Chemelot'
