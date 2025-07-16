@@ -5,11 +5,16 @@ from pathlib import Path
 from matplotlib.ticker import PercentFormatter
 from adopt_net0 import extract_datasets_from_h5group
 from matplotlib import gridspec
+import os
+
+#Add basepath
+basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
 
 # Define the data path
 run_for = 'gf'
 interval = '2030'
-resultfolder = "Z:/AdOpt_NET0/AdOpt_results/MY/DesignDays/CH_2030_" + run_for
+resultfolder = os.path.join(basepath, "Raw_results", "CH_2030_") + run_for
 
 # Define reference case ('fullres' or 'DD..' and technologies
 # tecs = ['AEC', 'MTO', 'Storage_Ammonia']
@@ -161,7 +166,7 @@ fig.text(0.015, 0.5, 'Difference with 10 Design Days (\%)', va='center', rotatio
 
 
 # # Save and show plot
-savepath = 'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/'
+savepath = os.path.join(basepath, "Plotting", "MY_Plots")
 
 plt.tight_layout()
 fig.subplots_adjust(left=0.15)

@@ -8,15 +8,19 @@ from matplotlib import pyplot as plt
 from scipy.interpolate import make_interp_spline
 
 from adopt_net0 import extract_datasets_from_h5group
+import os
+
+#Add basepath
+DATAPATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # Define the data paths
-# RESULT_FOLDER = os.path.join(basepath, "Raw_results", "EmissionScope Brownfield")
-RESULT_FOLDER = os.path.join(basepath, "Raw_results", "EmissionLimit Brownfield")
-# DATA_TO_EXCEL_PATH1 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_olefins_scope.xlsx'
-# DATA_TO_EXCEL_PATH2 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_ammonia_scope.xlsx'
-DATA_TO_EXCEL_PATH1 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_olefins.xlsx'
-DATA_TO_EXCEL_PATH2 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/production_shares_ammonia.xlsx'
-DATAPATH = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting"
+# RESULT_FOLDER = os.path.join(DATAPATH, "Raw_results", "EmissionScope Brownfield")
+RESULT_FOLDER = os.path.join(DATAPATH, "Raw_results", "EmissionLimit Brownfield")
+# DATA_TO_EXCEL_PATH1 = os.path.join(DATAPATH, "Plotting", "production_shares_olefins_scope.xlsx")
+# DATA_TO_EXCEL_PATH2 = os.path.join(DATAPATH, "Plotting", "production_shares_ammonia_scope.xlsx")
+DATA_TO_EXCEL_PATH1 = os.path.join(DATAPATH, "Plotting", "production_shares_olefins.xlsx")
+DATA_TO_EXCEL_PATH2 = os.path.join(DATAPATH, "Plotting", "production_shares_ammonia.xlsx")
+
 
 
 def fetch_and_process_data_production(resultfolder, data_to_excel_path_olefins, data_to_excel_path_ammonia,
@@ -329,7 +333,7 @@ def save_separate_legend(categories, filename="legend.pdf"):
     ax.axis('off')  # Hide axes completely
 
     plt.tight_layout()
-    fig.savefig(f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}', format='pdf', bbox_inches='tight')
+    fig.savefig(os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}'), format='pdf', bbox_inches='tight')
     plt.close(fig)
 
 
@@ -405,15 +409,15 @@ def main():
 
         saveas = 'pdf'
         if saveas == 'svg':
-            savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.svg'
+            savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.svg')
             plt.savefig(savepath, format='svg')
         elif saveas == 'pdf':
-            savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.pdf'
+            savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.pdf')
             plt.savefig(savepath, format='pdf', bbox_inches='tight')
         elif saveas == 'both':
-            savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.pdf'
+            savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.pdf')
             plt.savefig(savepath, format='pdf')
-            savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.svg'
+            savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.svg')
             plt.savefig(savepath, format='svg', bbox_inches='tight')
 
         plt.show()

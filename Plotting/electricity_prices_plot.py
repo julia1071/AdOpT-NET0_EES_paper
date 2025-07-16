@@ -5,10 +5,14 @@ from pathlib import Path
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from matplotlib.lines import Line2D
 from cmcrameri import cm
+import os
+
+#Add basepath
+basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # Define the data path
-datapath = "Z:/AdOpt_NET0/AdOpt_data/MY/241119_MY_Data_Chemelot"
-savepath = 'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/'
+datapath = os.path.join(basepath, "Input_data", "250303_MY_Data_Chemelot")
+savepath = os.path.join(basepath, "Plotting", "MY_Plots")
 el_load_path = Path(datapath) / 'import_data' / 'Electricity_data_MY.xlsx'
 save = 1
 

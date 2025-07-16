@@ -4,6 +4,10 @@ import os
 from matplotlib import pyplot as plt
 import matplotlib.font_manager as fm
 from openpyxl.reader.excel import load_workbook
+import os
+
+#Add basepath
+basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # --- Configurable options ---
 metric = "costs"       # Choose: "costs" or "emissions"
@@ -17,13 +21,11 @@ stacked = 0
 node = "Chemelot"
 if node == "Chemelot":
     if sensitivity:
-        file_path = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_noCO2.xlsx"
+        file_path = os.path.join(basepath, "Plotting", "result_data_long_noCO2.xlsx")
     else:
-        file_path = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long.xlsx"
-    if delayed:
-        file_path_delayed = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_delayed.xlsx"
+        file_path = os.path.join(basepath, "Plotting", "result_data_long.xlsx")
 else:
-    file_path = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_Zeeland.xlsx"
+    file_path = os.path.join(basepath, "Plotting", "result_data_long_Zeeland.xlsx")
 
 # Set font to Open Sans
 # font_path = 'C:/Windows/Fonts/OpenSans-Regular.ttf'  # Make sure this path is correct
@@ -299,11 +301,11 @@ if node == "Chemelot" and not sensitivity:
 if node == "Zeeland":
     filename = filename + "_" + node
 if saveas in ['svg', 'pdf', 'both']:
-    basepath = 'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots'
+    savebasepath = os.path.join(DATAPATH, "Plotting", "MY_Plots")
     if saveas in ['pdf', 'both']:
-        plt.savefig(os.path.join(basepath, f"{filename}.pdf"), format='pdf')
+        plt.savefig(os.path.join(savebasepath, f"{filename}.pdf"), format='pdf')
     if saveas in ['svg', 'both']:
-        plt.savefig(os.path.join(basepath, f"{filename}.svg"), format='svg')
+        plt.savefig(os.path.join(savebasepath, f"{filename}.svg"), format='svg')
 
 # plt.tight_layout(h_pad=1.5)
 plt.tight_layout()

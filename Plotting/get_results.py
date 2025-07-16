@@ -6,23 +6,23 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from matplotlib.ticker import PercentFormatter
 from adopt_net0 import extract_datasets_from_h5group
+import os
+
+#Add basepath
+basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 #options
 sensitivity = 1
 zeeland = 0
-delayed = 0
 
 if sensitivity:
-    data_to_excel_path = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_sensitivity.xlsx'
+    data_to_excel_path = os.path.join(basepath, "Plotting", "result_data_long_sensitivity.xlsx")
     result_types = ['EmissionLimit Greenfield', 'EmissionLimit Brownfield'] # Add multiple result types
 elif zeeland:
-    data_to_excel_path = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_Zeeland.xlsx'
+    data_to_excel_path = os.path.join(basepath, "Plotting", "result_data_long_Zeeland.xlsx")
     result_types = ['EmissionLimit Greenfield', 'EmissionLimit Brownfield']  # Add multiple result types
-elif delayed:
-    data_to_excel_path = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_delayed.xlsx'
-    result_types = ['EmissionLimit Brownfield']  # Add multiple result types
 else:
-    data_to_excel_path = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long.xlsx'
+    data_to_excel_path = os.path.join(basepath, "Plotting", "result_data_long.xlsx")
     result_types = ['EmissionLimit Greenfield', 'EmissionLimit Brownfield', 'EmissionScope Greenfield',
                     'EmissionScope Brownfield']
 
@@ -31,7 +31,7 @@ else:
 all_results = []
 
 for result_type in result_types:
-    resultfolder = f"Z:/AdOpt_NET0/AdOpt_results/MY/{result_type}"
+    resultfolder = os.path.join(basepath, "Plotting", f"{result_type}")
 
     # Define the multi-level index for rows
     if sensitivity:
@@ -49,15 +49,6 @@ for result_type in result_types:
                 [str(result_type)],
                 ["Zeeland"],
                 ["2030", "2040", "2050"]
-            ],
-            names=["Resulttype", "Location", "Interval"]
-        )
-    elif delayed:
-        columns = pd.MultiIndex.from_product(
-            [
-                [str(result_type)],
-                ["Chemelot_delayed"],
-                ["2040", "2050-1", "2050-2"]
             ],
             names=["Resulttype", "Location", "Interval"]
         )
@@ -108,32 +99,23 @@ for result_type in result_types:
 
                     #Calculate sunk costs and cumulative costs for brownfield
                     if 'Brownfield' in result_type:
-                        if not delayed:
-                            prev_interval = result_data.columns.levels[2][i - 1]
-                            if interval == '2030':
-                                result_data.loc["costs_tot_interval", (result_type, location, interval)] = \
-                                    summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
-                            if interval == '2040':
-                                result_data.loc["sunk_costs", (result_type, location, interval)] = tec_costs[prev_interval]
-                                result_data.loc["costs_tot_interval", (result_type, location, interval)] = tec_costs[prev_interval] + \
-                                    summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
-                            if interval == '2050':
-                                first_interval = result_data.columns.levels[2][i - 2]
-                                result_data.loc["sunk_costs", (result_type, location, interval)] = tec_costs[
-                                    prev_interval] + tec_costs[first_interval]
-                                result_data.loc["costs_tot_interval", (result_type, location, interval)] = tec_costs[prev_interval] + \
-                                    + tec_costs[first_interval] + summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
-                                result_data.loc["costs_tot_cumulative", (result_type, location, interval)] = sum(
-                                    total_costs.values()) * 10 + tec_costs[prev_interval] * 10 + tec_costs[first_interval] * 10
-                        else:
-                            if interval == '2050-1':
-                                prev_interval = '2040'
-                                result_data.loc["sunk_costs", (result_type, location, interval)] = tec_costs[
-                                    prev_interval]
-                                result_data.loc["costs_tot_interval", (result_type, location, interval)] = tec_costs[prev_interval] + \
-                                    + summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
-                                result_data.loc["costs_tot_cumulative", (result_type, location, interval)] = sum(
-                                    total_costs.values()) * 10 + tec_costs[prev_interval] * 10
+                        prev_interval = result_data.columns.levels[2][i - 1]
+                        if interval == '2030':
+                            result_data.loc["costs_tot_interval", (result_type, location, interval)] = \
+                                summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
+                        if interval == '2040':
+                            result_data.loc["sunk_costs", (result_type, location, interval)] = tec_costs[prev_interval]
+                            result_data.loc["costs_tot_interval", (result_type, location, interval)] = tec_costs[prev_interval] + \
+                                summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
+                        if interval == '2050':
+                            first_interval = result_data.columns.levels[2][i - 2]
+                            result_data.loc["sunk_costs", (result_type, location, interval)] = tec_costs[
+                                prev_interval] + tec_costs[first_interval]
+                            result_data.loc["costs_tot_interval", (result_type, location, interval)] = tec_costs[prev_interval] + \
+                                + tec_costs[first_interval] + summary_results.loc[summary_results['case'] == case, 'total_npv'].iloc[0]
+                            result_data.loc["costs_tot_cumulative", (result_type, location, interval)] = sum(
+                                total_costs.values()) * 10 + tec_costs[prev_interval] * 10 + tec_costs[first_interval] * 10
+
 
                     # Calculate total cumulative costs for Greenfield
                     if 'Greenfield' in result_type:
@@ -144,13 +126,7 @@ for result_type in result_types:
                             nodedata = extract_datasets_from_h5group(hdf_file["design/nodes"])
                             df_nodedata = pd.DataFrame(nodedata)
 
-                            if delayed:
-                                location_data = 'Chemelot'
-                                if interval == "2050-1" or interval == "2050-2":
-                                    interval_data = "2050"
-                                else:
-                                    interval_data = interval
-                            elif sensitivity:
+                            if sensitivity:
                                 location_data = 'Chemelot'
                                 interval_data = interval
                             else:

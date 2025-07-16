@@ -2,13 +2,14 @@ import re
 import pandas as pd
 import os
 
-from openpyxl.reader.excel import load_workbook
+#Add basepath
+basepath = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 execute = 0
 
 if execute:
     # Load the Excel file
-    file_path = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long.xlsx"
+    file_path = os.path.join(basepath, "Plotting", "result_data_long.xlsx")
     df = pd.read_excel(file_path, sheet_name="Sheet1", header=None)
 
     # Use the first and third rows as headers
@@ -204,7 +205,7 @@ if execute:
     df_emission_scope_import = pd.concat([filtered_df_import[[('', 'Carrier'), ('', 'Unit')]], df_emission_scope_import], axis=1)
 
     # Ensure output folder exists and save the filtered data
-    output_dir = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/Latex"
+    output_dir = os.path.join(basepath, "Plotting", "Latex")
     os.makedirs(output_dir, exist_ok=True)  # Ensure output folder exists
 
     filtered_excel_path = os.path.join(output_dir, "filtered_data.xlsx")
@@ -312,7 +313,7 @@ execute = 0
 
 if execute:
     # Load the Excel file
-    file_path = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_sensitivity.xlsx"
+    file_path = os.path.join(basepath, "Plotting", "result_data_long_sensitivity.xlsx")
     df = pd.read_excel(file_path, sheet_name="Sheet1", header=None)
 
     # Use the first and third rows as headers
@@ -488,7 +489,7 @@ if execute:
     filtered_df[('', '', 'Technology')] = filtered_df[('', '', 'Technology')].apply(swap_cc_existing)
 
     # Ensure output folder exists and save the filtered data
-    output_dir = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/Latex"
+    output_dir = os.path.join(basepath, "Plotting", "Latex")
     os.makedirs(output_dir, exist_ok=True)  # Ensure output folder exists
 
     # Split filtered_df into three based on the mid-header
@@ -653,7 +654,7 @@ execute = 0
 
 if execute:
     # Load the Excel file
-    file_path = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/result_data_long_Zeeland.xlsx"
+    file_path = os.path.join(basepath, "Plotting", "Zeeland")
     df = pd.read_excel(file_path, sheet_name="Sheet1", header=None)
 
     # Use the first and third rows as headers
@@ -822,7 +823,7 @@ if execute:
     filtered_df[('', 'Technology')] = filtered_df[('', 'Technology')].apply(swap_cc_existing)
 
     # Ensure output folder exists and save the filtered data
-    output_dir = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/Latex"
+    output_dir = os.path.join(basepath, "Plotting", "Latex")
     os.makedirs(output_dir, exist_ok=True)  # Ensure output folder exists
 
     filtered_excel_path = os.path.join(output_dir, "filtered_data_Zeeland.xlsx")

@@ -7,16 +7,19 @@ from pathlib import Path
 import matplotlib.font_manager as fm
 from matplotlib.colors import to_rgba
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-
 from adopt_net0 import extract_datasets_from_h5group, extract_dataset_from_h5
+import os
+
+#Add basepath
+DATAPATH = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # Define the data paths
-RESULT_FOLDER = "Z:/AdOpt_NET0/AdOpt_results/MY/"
-DATA_TO_EXCEL_PATH = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia//Plotting/operation_flex_import.xlsx'
-DATA_TO_EXCEL_PATH1 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/operation_flex.xlsx'
-DATA_TO_EXCEL_PATH2 = 'C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting/operation_flex_storage.xlsx'
-DATAPATH = "C:/Users/5637635/PycharmProjects/AdOpT-NET0_Julia/Plotting"
-EL_LOAD_PATH = "Z:/AdOpt_NET0/AdOpt_data/MY/241119_MY_Data_Chemelot/import_data/Electricity_data_MY.xlsx"
+RESULT_FOLDER = os.path.join(DATAPATH, "Raw_results")
+DATA_TO_EXCEL_PATH = os.path.join(DATAPATH, "Plotting", "operation_flex_import.xlsx")
+DATA_TO_EXCEL_PATH1 = os.path.join(DATAPATH, "Plotting", "operation_flex.xlsx")
+DATA_TO_EXCEL_PATH2 = os.path.join(DATAPATH, "Plotting", "operation_flex_storage.xlsx")
+DATAPATH = os.path.join(DATAPATH, "Plotting")
+EL_LOAD_PATH = os.path.join(DATAPATH, "Input_data", "250303_MY_Data_Chemelot")
 
 
 def fetch_and_process_data_import(resultfolder, data_to_excel_path, result_types, interval):
@@ -605,15 +608,15 @@ def main():
 
     saveas = 'pdf'
     if saveas == 'svg':
-        savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.svg'
+        savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.svg')
         plt.savefig(savepath, format='svg')
     elif saveas == 'pdf':
-        savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.pdf'
+        savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.pdf')
         plt.savefig(savepath, format='pdf')
     elif saveas == 'both':
-        savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.pdf'
+        savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.pdf')
         plt.savefig(savepath, format='pdf')
-        savepath = f'C:/Users/5637635/OneDrive - Universiteit Utrecht/Research/Multiyear Modeling/MY_Plots/{filename}.svg'
+        savepath = os.path.join(DATAPATH, "Plotting", "MY_Plots", f'{filename}.svg')
         plt.savefig(savepath, format='svg')
 
     plt.show()
